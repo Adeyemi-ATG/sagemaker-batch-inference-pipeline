@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Initialize Terraform
-        run: gitlab-terraform init
+        run: terraform init
 
   validate:
     runs-on: ubuntu-latest
@@ -59,7 +59,7 @@ jobs:
         run: zip -j ${LAMBDA_FILE_NAME} code/lambda_function/index.py
 
       - name: Validate Terraform
-        run: gitlab-terraform validate
+        run: terraform validate
 
       - name: List directory contents
         run: ls -lart
