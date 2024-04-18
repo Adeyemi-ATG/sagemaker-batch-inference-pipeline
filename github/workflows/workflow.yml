@@ -1,0 +1,65 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  TF_ROOT: .
+  TF_STATE_NAME: ${{ github.ref_slug }}
+  CACHE_FALLBACK_KEY: "test-state"
+  LAMBDA_FILE_NAME: "lambda_function_payload.zip"
+  GIT_CLEAN_FLAGS: "none"
+  REGION: "eu-west-2"
+
+jobs:
+  buildpipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip unzip
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip -o awscliv2.zip
+          sudo ./aws/install
+          pip3 install boto3 sagemaker pandas pyyaml
+
+      - name: Execute pipeline scripts
+        run: |
+          export AWS_DEFAULT_REGION=${REGION}
+          aws sagemaker list-domains
+          python3 ./pipeline_scripts/train_monitor_pipeline.py
+          python3 ./pipeline_scripts/hpo_with_monitor_pipeline.py
+          python3 ./pipeline_scripts/inference_with_monitor_pipeline.py
+
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Initialize Terraform
+        run: gitlab-terraform init
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install zip
+        run: sudo apt-get install -y zip
+
+      - name: Zip lambda function
+        run: zip -j ${LAMBDA_FILE_NAME} code/lambda_function/index.py
+
+      - name: Validate Terraform
+        run: gitlab-terraform validate
+
+      - name: List directory contents
+        run: ls -lart
