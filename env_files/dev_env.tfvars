@@ -3,7 +3,7 @@ bucket_prefix       =   "pipeline_shared/batch-scoring"    # e.g. "pipeline_shar
 bucket_train_prefix =   "training/data/raw"    # e.g. "training/data/raw"
 bucket_inf_prefix   =    "batch-scoring/data/raw"   # e.g. "batch-scoring/data/raw"
 email_recipient     =    ["AdeyemiAkintonde@theambassadors.com"]  # e.g. ["recipient-1@example.com", "recipient-2@example.com"]
-user_id             =    "adeyemi-aa"   # e.g.  "a12345"
+user_id             =    "adeyemi-akintonde"   # e.g.  "a12345"
 
 custom_notification_config = [
   {
