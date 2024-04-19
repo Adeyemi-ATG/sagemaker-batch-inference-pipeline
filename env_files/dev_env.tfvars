@@ -32,6 +32,6 @@ role_arn                   =  "arn:aws:iam::593492848123:role/SageMakerExecution
 sg_id                      =   "sg-04131fb785fc307ba" # e.g. "sg-0a12b3c45b67de8f9"
 subnet_id                  =   "subnet-082c44880335de4b4" # "subnet-01a23bcdef45ghij6"
 upload_inference_data      =   false# e.g. "false"
-upload_training_data       =   true # e.g. "true"
+upload_training_data       =   true# e.g. "true"
 
 
