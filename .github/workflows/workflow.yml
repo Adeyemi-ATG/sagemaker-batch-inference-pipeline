@@ -8,7 +8,7 @@ on:
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_DEFAULT_REGION: eu-west-2
+  AWS_DEFAULT_REGION: us-east-1
   LAMBDA_FILE_NAME: lambda_function_payload.zip
 
 jobs:
@@ -31,6 +31,11 @@ jobs:
     needs: setup
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install Python libraries
+        run: |
+          python3 -m ensurepip --upgrade
+          pip3 install boto3 sagemaker pandas pyyaml
 
       - name: Run pipeline scripts
         run: |
