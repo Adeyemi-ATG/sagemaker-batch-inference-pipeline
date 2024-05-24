@@ -78,6 +78,7 @@ approved_model_packages = sm_client.list_model_packages(
       SortBy='CreationTime',
       SortOrder='Descending'
   )
+#
 
 # Get the latest approved model package
 try:
