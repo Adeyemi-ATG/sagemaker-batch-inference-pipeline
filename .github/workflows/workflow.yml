@@ -40,16 +40,18 @@ jobs:
           python3 ./pipeline_scripts/hpo_with_monitor_pipeline.py
           python3 ./pipeline_scripts/inference_with_monitor_pipeline.py
 
-  init:
+  init_and_validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Initialize Terraform
-        run: terraform init
+        run: |
+          terraform init
+          terraform validate
 
-  validate:
+  zip_and_list: # Renamed existing validate job to zip_and_list
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -60,9 +62,6 @@ jobs:
 
       - name: Zip lambda function
         run: zip -j ${LAMBDA_FILE_NAME} code/lambda_function/index.py
-
-      - name: Validate Terraform
-        run: terraform validate
 
       - name: List directory contents
         run: ls -lart
