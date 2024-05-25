@@ -32,11 +32,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Python libraries
-        run: |
-          python3 -m ensurepip --upgrade
-          pip3 install boto3 sagemaker pandas pyyaml
-
       - name: Run pipeline scripts
         run: |
           export AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}
