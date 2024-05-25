@@ -6,8 +6,10 @@ on:
       - main
 
 env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_ACCESS_KEY_ID: ASIAYULXOFX5W6U6HS62
+  AWS_SECRET_ACCESS_KEY: fuHUrSInOrJuBObphs+Xs+mQVtTmS03uu3gtGnoh
   AWS_DEFAULT_REGION: eu-west-2
   LAMBDA_FILE_NAME: lambda_function_payload.zip
 
