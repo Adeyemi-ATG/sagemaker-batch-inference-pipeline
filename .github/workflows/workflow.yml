@@ -35,6 +35,7 @@ jobs:
       - name: Run pipeline scripts
         run: |
           export AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}
+          python3 -m pip install boto3 sagemaker pandas pyyaml  # Ensure libraries are installed
           python3 ./pipeline_scripts/train_monitor_pipeline.py
           python3 ./pipeline_scripts/hpo_with_monitor_pipeline.py
           python3 ./pipeline_scripts/inference_with_monitor_pipeline.py
