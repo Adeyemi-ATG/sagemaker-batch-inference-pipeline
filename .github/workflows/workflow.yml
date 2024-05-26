@@ -78,4 +78,23 @@ jobs:
       - name: Install jq (for Terraform action)
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      -
+      - name: Create Terraform plan
+        run: terraform plan -var-file=env_files/dev_env.tfvars
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Apply Terraform plan
+        run: terraform apply -var-file=env_files/dev_env.tfvars -auto-approve
+
+  destroy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Destroy infrastructure
+        run: terraform destroy -var-file=env_files/dev_env.tfvars -auto-approve
