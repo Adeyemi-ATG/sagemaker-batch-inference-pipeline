@@ -25,11 +25,6 @@ jobs:
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
           unzip awscliv2.zip
           sudo ./aws/install --update
-      - name: Configure AWS CLI
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set region ${{ env.AWS_DEFAULT_REGION }}
 
   pipeline:
     runs-on: ubuntu-latest
@@ -37,13 +32,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Python libraries
-        run: |
-          pip3 install boto3 sagemaker pandas pyyaml
-
       - name: Run pipeline scripts
         run: |
           export AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}
+          python3 -m pip install boto3 sagemaker pandas pyyaml  # Ensure libraries are installed
           python3 ./pipeline_scripts/train_monitor_pipeline.py
           python3 ./pipeline_scripts/hpo_with_monitor_pipeline.py
           python3 ./pipeline_scripts/inference_with_monitor_pipeline.py
