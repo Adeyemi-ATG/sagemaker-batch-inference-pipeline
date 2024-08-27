@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run pipeline scripts
+      - name: Run pipeline scriptss
         run: |
           export AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}
           python3 -m pip install boto3 sagemaker pandas pyyaml  # Ensure libraries are installed
