@@ -152,7 +152,7 @@ check_job_config = CheckJobConfig(
     sagemaker_session=sagemaker_session,
     volume_kms_key=kms_key,
     output_kms_key=kms_key,
-    network_config = network_config,
+    #network_config = network_config,
     tags = tags,
 )
 
@@ -209,7 +209,7 @@ sklearn_train = SKLearn(
     hyperparameters={"max_depth": 2},
     output_kms_key = kms_key,
     volume_kms_key = kms_key,
-    network_config = network_config,
+    #network_config = network_config,
     tags = tags,
     code_location = training_code_location,
     output_path = training_output_path,
@@ -245,7 +245,7 @@ sklearn_eval = ScriptProcessor(
     role=role,
     output_kms_key = kms_key,
     volume_kms_key = kms_key,
-    network_config = network_config,
+    #network_config = network_config,
     tags = tags,
 )
 
