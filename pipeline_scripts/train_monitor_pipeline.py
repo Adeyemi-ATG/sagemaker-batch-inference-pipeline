@@ -94,6 +94,7 @@ supplied_baseline_constraints_data_quality = ParameterString(name="DataQualitySu
 supplied_baseline_statistics_data_quality = ParameterString(name="DataQualitySuppliedStatistics", default_value="")
 
 # Uploading Pre-processing script to S3
+print("CHECK POINT 1")
 response = s3_client.upload_file('./scripts/training_preprocessing.py', 
                                  bucket,
                                  '{}/scripts/training_preprocessing.py'.format(prefix))
