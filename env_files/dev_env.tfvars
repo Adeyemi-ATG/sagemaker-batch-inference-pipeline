@@ -20,7 +20,9 @@ custom_notification_config = [
 
 # Pipeline information. Will be used by the Python helper script.
 accuracy_mse_threshold     =  "10.0" # e.g. "10.0"
-kms_key                    =  "arn:aws:kms:eu-west-2:593492848123:key/b999b25d-76fe-4c81-ad82-b49e91baaa57" # e.g. "arn:aws:kms:us-east-1:112233445566:key/123456a1-12b1-123c-1234-12345df12e12"
+#kms_key                    =  "arn:aws:kms:eu-west-2:593492848123:key/b999b25d-76fe-4c81-ad82-b49e91baaa57" # e.g. "arn:aws:kms:us-east-1:112233445566:key/123456a1-12b1-123c-1234-12345df12e12"
+kms_key                    =  "arn:aws:kms:eu-west-2:593492848123:key/be85f7ab-5b8f-46c0-8f54-487450cb65b7" # e.g. "arn:aws:kms:us-east-1:112233445566:key/123456a1-12b1-123c-1234-12345df12e12"
+
 model_package_group_name =    "poc-mpg" # e.g. "poc-mpg"
 notification_function_name =  "pipeline-notification-lambda" # e.g. "pipeline-notification-lambda"
 pipeline_inf               =  "InferencePipeline" # e.g. "InferencePipeline"
