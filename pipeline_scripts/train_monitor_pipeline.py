@@ -1,3 +1,5 @@
+
+print("CHECK POINT 1")
 import json
 import boto3
 import sagemaker
