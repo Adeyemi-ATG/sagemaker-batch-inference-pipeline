@@ -121,8 +121,8 @@ sklearn_processor = SKLearnProcessor(
     instance_count=processing_instance_count,
     base_job_name="sklearn-training-preprocess",
     role=role,
-    output_kms_key = kms_key,
-    volume_kms_key = kms_key,
+    ##output_kms_key = kms_key,
+    #volume_kms_key = kms_key,
     network_config = network_config,
     tags = tags,
 )
@@ -138,8 +138,7 @@ step_process = ProcessingStep(
         ProcessingOutput(output_name="validation", source="/opt/ml/processing/validation", destination=f"s3://{bucket}/{prefix}/training/data/processed/validation"),
         ProcessingOutput(output_name="test", source="/opt/ml/processing/test", destination=f"s3://{bucket}/{prefix}/training/data/processed/test"),
     ],
-    #code=f"s3://{bucket}/{prefix}/scripts/training_preprocessing.py",
-    code=f"s3://{bucket}/{prefix}/scripts/training.py",
+    code=f"s3://{bucket}/{prefix}/scripts/training_preprocessing.py",
 
 )
 
