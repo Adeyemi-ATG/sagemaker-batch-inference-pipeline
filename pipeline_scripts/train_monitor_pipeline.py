@@ -106,7 +106,7 @@ response = s3_client.upload_file('./scripts/training.py',
 response = s3_client.upload_file('./scripts/evaluation.py', 
                                  bucket,
                                  '{}/scripts/evaluation.py'.format(prefix))
-
+'''
 ## Create network config
 network_config = NetworkConfig(
     security_group_ids=security_group_ids,
@@ -114,7 +114,7 @@ network_config = NetworkConfig(
     enable_network_isolation=True,
     encrypt_inter_container_traffic=True,
 )
-
+'''
 ## Pre Processing step
 sklearn_processor = SKLearnProcessor(
     framework_version=framework_version,
@@ -124,7 +124,7 @@ sklearn_processor = SKLearnProcessor(
     role=role,
     ##output_kms_key = kms_key,
     #volume_kms_key = kms_key,
-    network_config = network_config,
+    #network_config = network_config,
     tags = tags,
 )
 
