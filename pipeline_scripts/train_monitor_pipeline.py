@@ -138,7 +138,9 @@ step_process = ProcessingStep(
         ProcessingOutput(output_name="validation", source="/opt/ml/processing/validation", destination=f"s3://{bucket}/{prefix}/training/data/processed/validation"),
         ProcessingOutput(output_name="test", source="/opt/ml/processing/test", destination=f"s3://{bucket}/{prefix}/training/data/processed/test"),
     ],
-    code=f"s3://{bucket}/{prefix}/scripts/training_preprocessing.py",
+    #code=f"s3://{bucket}/{prefix}/scripts/training_preprocessing.py",
+    code=f"s3://{bucket}/{prefix}/scripts/training.py",
+
 )
 
 # Data Quality Step
