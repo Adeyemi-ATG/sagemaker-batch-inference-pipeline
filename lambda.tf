@@ -21,11 +21,11 @@ EOF
 }
 
 resource "aws_lambda_function" "pipeline_notification_lambda" {
-  filename         = "lambda_function_payload.zip"
+  filename         = "${path.module}/lambda_function_payload.zip"  # Adjusted to reference the correct path
   function_name    = var.notification_function_name
   role             = aws_iam_role.iam_for_lambda.arn
   handler          = "index.lambda_handler"
-  source_code_hash = filebase64sha256("lambda_function_payload.zip")
+  source_code_hash = filebase64sha256("${path.module}/lambda_function_payload.zip")  # Adjusted to reference the correct path
   runtime          = "python3.9"
   reserved_concurrent_executions = 100
   environment {

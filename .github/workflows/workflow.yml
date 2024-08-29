@@ -52,7 +52,7 @@ jobs:
       - name: Create Lambda function zip
         run: |
           cd code/lambda_function
-          zip -j ../../${{ env.LAMBDA_FILE_NAME }} index.py
+          zip -j ../../../${{ env.LAMBDA_FILE_NAME }} index.py
 
       - name: Validate Terraform configuration
         run: |
