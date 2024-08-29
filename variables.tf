@@ -113,3 +113,9 @@ variable "subnet_id" {
   type          = string
   description   = "Subnet ID for the resources."
 }
+
+variable "aws_region" {
+  description = "The AWS region where resources will be deployed"
+  type        = string
+  default     = "eu-west-2"  # Set a default value or leave it without default for mandatory input
+}

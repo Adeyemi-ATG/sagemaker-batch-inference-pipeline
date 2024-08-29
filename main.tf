@@ -1,7 +1,7 @@
 # Data sources to retrieve information about the current AWS account and region
 
-data "aws_caller_identity" "current" {}
-data "aws_region" "current" {}
+#data "aws_caller_identity" "current" {}
+#data "aws_region" "current" {}
 
 
 
@@ -17,7 +17,8 @@ terraform {
 
 # AWS provider configuration
 provider "aws" {
-  region = data.aws_region.current.name  # Automatically use the current region
+  #region = data.aws_region.current.name  # Automatically use the current region
+  region = var.aws_region
 }
 
 # Terraform Backend Configuration is optional if you defined the backend in your runner.
