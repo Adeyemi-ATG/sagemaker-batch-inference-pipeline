@@ -54,6 +54,9 @@ jobs:
           cd code/lambda_function
           zip -j ../../../${{ env.LAMBDA_FILE_NAME }} index.py
 
+      - name: Verify ZIP file existence
+        run: ls -la ../../../
+
       - name: Validate Terraform configuration
         run: |
           terraform init
