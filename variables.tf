@@ -102,3 +102,14 @@ variable "tags" {
   description = "Resource Tags"
   default     = {}
 }
+
+
+variable "sg_id" {
+  type        = string,
+  description = "Security Group ID for the resources."
+}
+
+variable "subnet_id" {
+  type          = string,
+  description   = "Subnet ID for the resources."
+}
