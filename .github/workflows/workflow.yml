@@ -55,11 +55,13 @@ jobs:
           zip -j ../../../${{ env.LAMBDA_FILE_NAME }} index.py
 
       - name: Verify ZIP file existence
-        run: ls -la ../../../
+        run: |
+          cd ../..
+          ls -la 
 
       - name: Validate Terraform configuration
         run: |
-          cd ../../../  # Ensure you are in the root directory where Terraform files are
+          cd ../..  # Navigate to the root directory
           terraform init
           terraform validate
 
@@ -74,7 +76,7 @@ jobs:
 
       - name: Create Terraform plan
         run: |
-          cd ../../../  # Ensure you are in the root directory where Terraform files are
+          cd ../..  # Navigate to the root directory
           terraform init
           terraform plan -var-file=env_files/dev_env.tfvars
 
