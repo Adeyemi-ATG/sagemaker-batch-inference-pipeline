@@ -105,11 +105,11 @@ variable "tags" {
 
 
 variable "sg_id" {
-  type        = string,
+  type        = string
   description = "Security Group ID for the resources."
 }
 
 variable "subnet_id" {
-  type          = string,
+  type          = string
   description   = "Subnet ID for the resources."
 }
