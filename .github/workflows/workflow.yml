@@ -59,6 +59,7 @@ jobs:
 
       - name: Validate Terraform configuration
         run: |
+          cd ../../../  # Ensure you are in the root directory where Terraform files are
           terraform init
           terraform validate
 
@@ -73,6 +74,7 @@ jobs:
 
       - name: Create Terraform plan
         run: |
+          cd ../../../  # Ensure you are in the root directory where Terraform files are
           terraform init
           terraform plan -var-file=env_files/dev_env.tfvars
 
