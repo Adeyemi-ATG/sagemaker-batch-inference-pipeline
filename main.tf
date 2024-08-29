@@ -1,7 +1,7 @@
 # Data sources to retrieve information about the current AWS account and region
 
-#data "aws_caller_identity" "current" {}
-#data "aws_region" "current" {}
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
 
 
 
