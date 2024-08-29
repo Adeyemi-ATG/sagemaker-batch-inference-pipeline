@@ -119,3 +119,5 @@ variable "aws_region" {
   type        = string
   default     = "eu-west-2"  # Set a default value or leave it without default for mandatory input
 }
+
+
