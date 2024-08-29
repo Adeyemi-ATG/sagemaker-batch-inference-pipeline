@@ -69,7 +69,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Create Terraform plan
-        run: terraform plan -var-file=env_files/dev_env.tfvars
+        run: |
+          terraform init
+          terraform plan -var-file=env_files/dev_env.tfvars
 
   deploy:
     runs-on: ubuntu-latest
