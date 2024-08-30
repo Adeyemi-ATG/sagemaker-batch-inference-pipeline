@@ -98,10 +98,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Reinitialize Terraform (clean lock file)
+      - name: Recreate Lambda function zip
         run: |
-          rm -f terraform.lock.hcl  # Delete the existing lock file if present
-          terraform init            # Reinitialize Terraform to ensure a consistent environment
+          cd code/lambda_function
+          zip -j "${GITHUB_WORKSPACE}/lambda_function_payload.zip" index.py
+          # Recreate the ZIP file in the root directory
+
+      - name: Verify ZIP file before Terraform apply
+        run: |
+          ls -la "${GITHUB_WORKSPACE}"
+          # This should confirm that the ZIP file is still present in the root directory
+
+      - name: Reinitialize Terraform
+        run: |
+          terraform init  # Reinitialize Terraform
 
       - name: Apply Terraform plan
         run: terraform apply -var-file=env_files/dev_env.tfvars -auto-approve
