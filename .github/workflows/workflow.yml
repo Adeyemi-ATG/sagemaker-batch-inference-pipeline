@@ -122,9 +122,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Recreate Lambda function zip
+        run: |
+          cd code/lambda_function
+          zip -j "${GITHUB_WORKSPACE}/lambda_function_payload.zip" index.py
+          # Recreate the ZIP file in the root directory
+
+      - name: Verify ZIP file before Terraform destroy
+        run: |
+          ls -la "${GITHUB_WORKSPACE}"
+          # This should confirm that the ZIP file is still present in the root directory
+
       - name: Reinitialize Terraform
         run: |
           terraform init  # Reinitialize Terraform to ensure a consistent environment
 
       - name: Destroy infrastructure
-        run: terraform destroy -var-file=env_files/dev_env.tfvars -auto-approve
+        run: terraform destroy -var-file=env_files/dev_env.tfvars -auto-approve -var-file=env_files/dev_env.tfvars -auto-approve
