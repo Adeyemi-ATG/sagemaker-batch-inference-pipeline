@@ -52,16 +52,17 @@ jobs:
       - name: Create Lambda function zip
         run: |
           cd code/lambda_function
-          zip -j ../../${{ env.LAMBDA_FILE_NAME }} index.py
+          zip -j "${GITHUB_WORKSPACE}/${{ env.LAMBDA_FILE_NAME }}" index.py
+          # Create the ZIP file in the root directory
 
       - name: Verify ZIP file existence
         run: |
-          cd ../..
-          ls -la 
+          ls -la "${GITHUB_WORKSPACE}"
+          # Verify the ZIP file is in the root directory
 
       - name: Validate Terraform configuration
         run: |
-          cd ../..  # Navigate to the root directory
+          cd "${GITHUB_WORKSPACE}"  # Move to the root directory
           terraform init
           terraform validate
 
