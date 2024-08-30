@@ -122,5 +122,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Reinitialize Terraform
+        run: |
+          terraform init  # Reinitialize Terraform to ensure a consistent environment
+
       - name: Destroy infrastructure
         run: terraform destroy -var-file=env_files/dev_env.tfvars -auto-approve
