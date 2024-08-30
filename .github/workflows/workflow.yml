@@ -75,9 +75,14 @@ jobs:
       - name: Install jq (for Terraform action)
         run: sudo apt-get update && sudo apt-get install -y jq
 
+      - name: Recreate Lambda function zip
+        run: |
+          cd code/lambda_function
+          zip -j "${GITHUB_WORKSPACE}/${{ env.LAMBDA_FILE_NAME }}" index.py
+          # Recreate the ZIP file in the root directory
+
       - name: Verify ZIP file before Terraform plan
         run: |
-          cd "${GITHUB_WORKSPACE}"
           ls -la "${GITHUB_WORKSPACE}"
           # This should confirm that the ZIP file is still present in the root directory
 
