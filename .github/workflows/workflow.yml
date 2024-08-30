@@ -75,9 +75,15 @@ jobs:
       - name: Install jq (for Terraform action)
         run: sudo apt-get update && sudo apt-get install -y jq
 
+      - name: Verify ZIP file before Terraform plan
+        run: |
+          cd "${GITHUB_WORKSPACE}"
+          ls -la "${GITHUB_WORKSPACE}"
+          # This should confirm that the ZIP file is still present in the root directory
+
       - name: Create Terraform plan
         run: |
-          cd "${GITHUB_WORKSPACE}"  # Navigate to the root directory
+          cd "${GITHUB_WORKSPACE}"  # Move to the root directory
           terraform init
           terraform plan -var-file=env_files/dev_env.tfvars
 
