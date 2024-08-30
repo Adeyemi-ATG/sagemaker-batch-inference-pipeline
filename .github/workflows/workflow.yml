@@ -98,6 +98,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Reinitialize Terraform (clean lock file)
+        run: |
+          rm -f terraform.lock.hcl  # Delete the existing lock file if present
+          terraform init            # Reinitialize Terraform to ensure a consistent environment
+
       - name: Apply Terraform plan
         run: terraform apply -var-file=env_files/dev_env.tfvars -auto-approve
 
