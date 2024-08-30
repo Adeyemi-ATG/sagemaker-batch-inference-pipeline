@@ -76,7 +76,7 @@ jobs:
 
       - name: Create Terraform plan
         run: |
-          cd ../..  # Navigate to the root directory
+          cd "${GITHUB_WORKSPACE}"  # Navigate to the root directory
           terraform init
           terraform plan -var-file=env_files/dev_env.tfvars
 
