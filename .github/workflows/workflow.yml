@@ -111,7 +111,7 @@ jobs:
 
       - name: Reinitialize Terraform
         run: |
-          terraform init  # Reinitialize Terraform
+          terraform init -reconfigure # # Reinitialize Terraform with reconfiguration
 
       - name: Apply Terraform plan
         run: terraform apply -var-file=env_files/dev_env.tfvars -auto-approve
