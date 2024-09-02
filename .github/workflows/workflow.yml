@@ -139,11 +139,8 @@ jobs:
 
       - name:  Terraform Plan
         run: |
-         terraform plan -var-file=env_files/dev_env.tfvars -auto-approve
+         terraform plan -var-file=env_files/dev_env.tfvars
 
       - name: Destroy infrastructure
         run: terraform destroy -var-file=env_files/dev_env.tfvars -auto-approve
-
-
-
 
