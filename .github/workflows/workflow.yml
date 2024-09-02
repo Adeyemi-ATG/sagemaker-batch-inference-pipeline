@@ -93,7 +93,6 @@ jobs:
           terraform plan -var-file=env_files/dev_env.tfvars
 
 
-
   destroy:
     runs-on: ubuntu-latest
     needs: build
@@ -116,6 +115,6 @@ jobs:
           terraform init  # Reinitialize Terraform to ensure a consistent environment
 
       - name: Destroy infrastructure
-        run: terraform destroy -var-file=env_files/dev_env.tfvars -auto-approve -var-file=env_files/dev_env.tfvars -auto-approve
+        run: terraform destroy -var-file=env_files/dev_env.tfvars -auto-approve
 
 
