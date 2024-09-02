@@ -17,9 +17,9 @@ terraform {
 
 terraform {
   backend "s3" {
-    bucket = var.bucket_name
+    bucket = "terraform-state-bucket-Mlops-prob-model"
     key    = "terraform.tfstate"
-    region = var.aws_region
+    region = "eu-west-2"
     encrypt = true
   }
 }
