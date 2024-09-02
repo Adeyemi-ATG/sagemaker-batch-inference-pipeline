@@ -15,6 +15,16 @@ terraform {
   }
 }
 
+terraform {
+  backend "s3" {
+    bucket = var.bucket_name
+    key    = "terraform.tfstate"
+    region = var.aws_region
+    encrypt = true
+  }
+}
+
+
 # AWS provider configuration
 provider "aws" {
   #region = data.aws_region.current.name  # Automatically use the current region

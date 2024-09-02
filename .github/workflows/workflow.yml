@@ -139,8 +139,3 @@ jobs:
 
       - name: Destroy infrastructure
         run: terraform destroy -var-file=env_files/dev_env.tfvars -auto-approve
-
-
-
-
-
