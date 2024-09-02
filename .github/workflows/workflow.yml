@@ -92,6 +92,29 @@ jobs:
           terraform init
           terraform plan -var-file=env_files/dev_env.tfvars
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Recreate Lambda function zip
+        run: |
+          cd code/lambda_function
+          zip -j "${GITHUB_WORKSPACE}/lambda_function_payload.zip" index.py
+          # Recreate the ZIP file in the root directory
+
+      - name: Verify ZIP file before Terraform apply
+        run: |
+          ls -la "${GITHUB_WORKSPACE}"
+          # This should confirm that the ZIP file is still present in the root directory
+
+      - name: Reinitialize Terraform
+        run: |
+          terraform init  # Reinitialize Terraform
+
+      - name: Apply Terraform plan
+        run: terraform apply -var-file=env_files/dev_env.tfvars -auto-approve
 
   destroy:
     runs-on: ubuntu-latest
