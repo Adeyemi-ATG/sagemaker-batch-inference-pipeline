@@ -17,7 +17,7 @@ terraform {
 
 terraform {
   backend "s3" {
-    bucket = "terraform-state-bucket-Mlops-prob-model"
+    bucket = "terraform-state-bucket-mlops-prob-model"
     key    = "terraform.tfstate"
     region = "eu-west-2"
     encrypt = true
